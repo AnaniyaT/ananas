@@ -1,0 +1,23 @@
+class Solution:
+    def sortSentence(self, s: str) -> str:
+        words=0
+        for i in s:
+            if i ==" ":
+                words+=1
+        words +=1
+        wordarr = [""]*words
+        tempword=""
+        for j in s:
+            if j.isalpha():
+                tempword+=j
+            if j.isdigit():
+                wordarr[int(j)-1] = tempword
+                tempword = ""
+        sentence = ""
+        k=0
+        while k < words-1:
+            sentence += (wordarr[k]+" ")
+            k+=1
+        sentence += wordarr[k]
+        return (sentence)
+            
