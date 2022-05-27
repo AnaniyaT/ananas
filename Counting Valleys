@@ -1,0 +1,36 @@
+#!/bin/python3
+import math
+import os
+import random
+import re
+import sys
+
+def countingValleys(steps, path):
+    n=0
+    h=0
+    dip = False
+    for i in path:
+        if i == "D":
+            h-=1
+        else:
+            h+=1
+        if h<0:
+            dip = True
+        if h>=0 and dip == True:
+            n+=1
+            dip = False
+    return (n)
+            
+     
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    steps = int(input().strip())
+
+    path = input()
+
+    result = countingValleys(steps, path)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
