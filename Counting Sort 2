@@ -1,0 +1,33 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+
+def countingSort(arr):
+    n = max(arr)
+    freqarr = [0]*(n+1)
+    for i in arr:
+        freqarr[i] += 1
+    sortedarr = []
+    k=0
+    for j in freqarr:
+        sortedarr += [k]*j
+        k+=1
+    return(sortedarr)
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input().strip())
+
+    arr = list(map(int, input().rstrip().split()))
+
+    result = countingSort(arr)
+
+    fptr.write(' '.join(map(str, result)))
+    fptr.write('\n')
+
+    fptr.close()
