@@ -1,0 +1,2 @@
+m = input ().split(" ")
+print ((int(m[1])*int(m[0]))//2)
