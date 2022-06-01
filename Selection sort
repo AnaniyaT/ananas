@@ -1,0 +1,26 @@
+class Solution: 
+    def select(self, arr, i):
+        size=len(arr)
+        for i in range(0,size):
+            min = arr[i]
+            minindx = i
+            for j in range (i+1,size):
+                if min > arr[j]:
+                    min = arr[j]
+                    minindx = j
+            arr[i],arr[minindx]= arr[minindx],arr[i]
+    
+        # code here
+        
+    
+    def selectionSort(self, arr,n):
+        size=len(arr)
+        for n in range(0,size):
+            min = arr[n]
+            minindx = n
+            for j in range (n+1,size):
+                if min > arr[j]:
+                    min = arr[j]
+                    minindx = j
+            arr[n],arr[minindx]= arr[minindx],arr[n]
+        return arr    
