@@ -7,9 +7,8 @@ class Solution:
         while j>i:
             if nums[i]+nums[j] == k:
                 count +=1
-                del nums[j]
-                del nums[i]
-                j-=2
+                j-=1
+                i+=1
             elif nums[i]+nums[j] < k:
                 i+=1
             else:
