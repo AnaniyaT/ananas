@@ -11,11 +11,11 @@ class Solution:
         qval = q.val
         currNode = root
         while currNode.left != None or currNode.right != None:
-            if pval <= currNode.val and qval >= currNode.val:
+            if p.val <= currNode.val and q.val >= currNode.val:
                 return currNode
-            elif pval >= currNode.val and qval <= currNode.val:
+            elif p.val >= currNode.val and q.val <= currNode.val:
                 return currNode
-            elif pval <= currNode.val and qval <= currNode.val:
+            elif p.val <= currNode.val and q.val <= currNode.val:
                 currNode = currNode.left
             else:
                 currNode = currNode.right
