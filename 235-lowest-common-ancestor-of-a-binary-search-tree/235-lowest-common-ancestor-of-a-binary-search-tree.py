@@ -9,11 +9,9 @@ class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         currNode = root
         while currNode.left != None or currNode.right != None:
-            if p.val <= currNode.val and q.val >= currNode.val:
-                return currNode
-            elif p.val >= currNode.val and q.val <= currNode.val:
-                return currNode
-            elif p.val <= currNode.val and q.val <= currNode.val:
+            if max(p.val,q.val) < currNode.val:
                 currNode = currNode.left
-            else:
+            elif min(p.val,q.val) > currNode.val:
                 currNode = currNode.right
+            else:
+                return currNode
