@@ -7,12 +7,10 @@ class Solution:
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
         if not head: return head
         currNode = head
-        currVal = head.val
         while currNode.next:
-            if currNode.next.val == currVal:
+            if currNode.val == currNode.next.val:
                 currNode.next = currNode.next.next
             else:
-                currVal = currNode.next.val
                 currNode = currNode.next
         return head
                 
