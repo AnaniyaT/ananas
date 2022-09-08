@@ -1,12 +1,9 @@
 class Solution:
-    def findKthBit(self, n: int, k: int, string = "0") -> str:
-        if n == 0:
-            return string[k-1]
-        temp = ""
-        for i in reversed(string):
-            if i == "0":
-                temp += "1"
-            else:
-                temp += "0"
-        return self.findKthBit(n-1,k,string+"1"+temp)
-        
+    def findKthBit(self, n: int, k: int) -> str:
+        string = "0"
+        for i in range (n-1):
+            temp = ""
+            for bit in reversed(string):
+                temp += "0" if bit == "1" else "1"
+            string += "1"+temp
+        return string[k-1]
