@@ -9,6 +9,5 @@ class Solution:
                     l = r
         if l != len(prices)-1:
             n = r-l
-            print(r)
             count += int(((n+1)*n)/2)
         return count + len(prices)
