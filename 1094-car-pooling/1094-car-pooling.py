@@ -1,12 +1,12 @@
 class Solution:
     def carPooling(self, trips: List[List[int]], capacity: int) -> bool:
-        count = 0
-        dest = []
-        for i,j,k in sorted(trips, key = lambda a: a[1]):
-            count += i
-            heappush(dest, (k,i))
-            while dest[0][0] <= j:
-                count -= heappop(dest)[1]
-            if count > capacity:
+        listt = [0]*1001
+        summ = 0
+        for i,j,k in trips:
+            listt[j] += i
+            listt[k] -= i
+        for i in listt:
+            summ += i
+            if summ > capacity:
                 return False
         return True
