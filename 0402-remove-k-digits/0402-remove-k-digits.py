@@ -6,7 +6,6 @@ class Solution:
                 stack.pop()
                 k -=1 
             stack.append(i)
-        while k and stack:
-            stack.pop()
-            k -= 1
+        if k:
+            stack = stack[:-k]
         return(str(int("0"+"".join(stack))))
