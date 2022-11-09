@@ -1,0 +1,15 @@
+class Solution:
+    def partitionLabels(self, s: str) -> List[int]:
+        lastindx = {}
+        for i in range(len(s)-1,-1,-1):
+            if s[i] not in lastindx:
+                lastindx[s[i]] = i
+        result = []
+        r = 0
+        last = -1
+        for i,j in enumerate(s):
+            r = max(r,lastindx[j])
+            if i == r:
+                result.append(r-last)
+                last = r
+        return result
