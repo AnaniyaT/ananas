@@ -6,13 +6,11 @@
 # def guess(num: int) -> int:
 
 class Solution:
-    def guessNumber(self, n: int) -> int:
-        lo, hi = 1, n
-        while True:
-            bro = (lo+hi)//2
-            if guess(bro) == 0:
-                return bro
-            elif guess(bro) == -1:
-                hi = bro - 1
-            else:
-                lo = bro + 1
+    def guessNumber(self, n: int, a = 1) -> int:
+        bro = (a+n)//2
+        if guess(bro) == 0:
+            return bro
+        elif guess(bro) == -1:
+            return self.guessNumber(bro - 1, a)
+        else:
+            return self.guessNumber(n, bro + 1)
