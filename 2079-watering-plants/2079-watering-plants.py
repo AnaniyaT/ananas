@@ -1,13 +1,16 @@
 class Solution:
     def wateringPlants(self, plants: List[int], capacity: int) -> int:
-        steps = 0
-        currCap = capacity
-        for i, j in enumerate(plants):
-            if currCap >= j:
-                steps += 1
-                currCap -= j
+        #Dani's code
+        orginal = capacity
+        answer = 0
+        for idx, plant in enumerate(plants):
+            # print(capacity, plant, idx)
+            if capacity >= plant:
+                answer += 1
+                capacity -= plant
             else:
-                steps += 2*i+1
-                currCap = capacity - j
-        return steps
+                answer += 2*idx + 1
+                capacity = orginal - plant
+        
+        return answer
             
