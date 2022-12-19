@@ -1,0 +1,14 @@
+wordDict = {}
+wordCount = 0
+num = int(input())
+for _ in range(num):
+    word = input()
+    if word in wordDict:
+        wordDict[word] += 1
+    else:
+        wordDict[word] = 1
+        wordCount += 1
+print(wordCount)
+for word in wordDict:
+    print(wordDict[word], end=" ")
+    
