@@ -1,0 +1,11 @@
+num = int(input())
+rooms = input().split(" ")
+roomCount = {}
+for room in rooms:
+    if room in roomCount:
+        roomCount[room] += 1
+    else:
+        roomCount[room] = 1
+for room in roomCount:
+    if roomCount[room] != num:
+        print(room)
