@@ -1,0 +1,11 @@
+nm = input()
+numbers = input().split(" ")
+like = set(input().split(" "))
+dislike = set(input().split(" "))
+happiness = 0
+for num in numbers:
+    if num in like:
+        happiness += 1
+    if num in dislike:
+        happiness -= 1
+print (happiness)
