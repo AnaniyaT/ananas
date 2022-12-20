@@ -1,0 +1,17 @@
+for _ in range(int(input())):
+    l = 0
+    r = int(input()) - 1
+    blocks = list(map(int, input().split()))
+    top = 2**31
+    while l < r:
+        if blocks[l] >= blocks[r] and blocks[l] <= top:
+            top = blocks[l]
+            l += 1
+        elif blocks[l] < blocks[r] and blocks[r] <= top:
+            top = blocks[r]
+            r -= 1
+        else:
+            print ("No")
+            break
+    if l == r:
+        print ("Yes")
