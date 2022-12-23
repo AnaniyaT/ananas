@@ -17,5 +17,4 @@ class Solution:
                     else:
                         counter += 1
                         board[rowNo][col] = counter
-        print (board)
         return counter
