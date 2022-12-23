@@ -1,0 +1,18 @@
+superSet = set(input().split())
+lengthOfSuperSet = len(superSet)
+numOfSets = int(input())
+printStatement = "True"
+for _ in range(numOfSets):
+    sett = set(input().split())
+    isSubSet = True
+    if len(sett) >= lengthOfSuperSet:
+        printStatement = "False"
+        break
+    for num in sett:
+        if num not in superSet:
+            printStatement = "False"
+            isSubSet = False
+            break
+    if not isSubSet:
+        break
+print (printStatement)
