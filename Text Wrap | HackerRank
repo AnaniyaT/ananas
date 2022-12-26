@@ -1,0 +1,15 @@
+import textwrap
+
+def wrap(string, max_width):
+    stringList = []
+    for ind, char in enumerate(string):
+        stringList.append(char)
+        if (ind+1)%max_width == 0:
+            stringList.append("\n")
+    
+    return "".join(stringList)
+
+if __name__ == '__main__':
+    string, max_width = input(), int(input())
+    result = wrap(string, max_width)
+    print(result)
