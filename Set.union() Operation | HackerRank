@@ -1,0 +1,6 @@
+n = input()
+english = set(input().split())
+m = input()
+french = set(input().split())
+both = english.union(french)
+print(len(both))
