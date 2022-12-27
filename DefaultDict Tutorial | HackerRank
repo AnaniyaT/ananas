@@ -1,0 +1,11 @@
+from collections import defaultdict
+myDict = defaultdict(list)
+nm = list(map(int, input().split()))
+for ind in range(nm[0]):
+    myDict[input()].append(str(ind + 1))
+for _ in range(nm[1]):
+    result = " ".join(myDict[input()])
+    if result:
+        print (result)
+    else:
+        print("-1")
