@@ -1,0 +1,16 @@
+testcases = int(input())
+for _ in range(testcases):
+    length = int(input())
+    arr = input().split()
+    string = input()
+    numDict = {}
+    printStatement = "YES"
+    for ind in range(length):
+        if arr[ind] in numDict:
+            if string[ind] != numDict[arr[ind]]:
+                printStatement = "NO"
+                break
+        else:
+            numDict[arr[ind]] = string[ind]
+    
+    print(printStatement)
