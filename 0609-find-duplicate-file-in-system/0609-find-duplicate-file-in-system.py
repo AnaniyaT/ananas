@@ -1,43 +1,21 @@
 class Solution:
     def findDuplicate(self, paths: List[str]) -> List[List[str]]:
         contentDict = defaultdict(list)
-        
         for path in paths:
-            directory = path.split(" ", maxsplit=1)
-            parent = directory[0]+"/"
-            fileList = []
-            contentList = []
-           
-            #boolean parenthesis Flag to know if a parenthesis has been opened
-            pFlag = False
+            splitPath = path.split()
+            parent = splitPath[0] + "/"
             
-            if len(directory) > 1:
-                for char in directory[1]:
-                    if char == "(":
-                        pFlag = True
-                        
-                    elif char == ")":
-                        content = "".join(contentList)
-                        file = "".join(fileList)
-                        contentDict[content].append(parent+file)
-                        pFlag = False
-                        
-                        fileList = []
-                        contentList = []
-                        
-                    elif char != " ":
-                        if pFlag:
-                            contentList.append(char)
-                        else:
-                            fileList.append(char)
-                    
-            
-                            
+            for file in splitPath[1:]:
+                splitFile = file.split("(")
+                fileName = splitFile[0]
+                content = splitFile[1][:-1]
+                
+                contentDict[content].append(parent + fileName)
+        
         result = []
         for contentt in contentDict:
-            dirs = contentDict[contentt]
-            if len(dirs) > 1:
-                result.append(contentDict[contentt])
-
+            duplicates = contentDict[contentt]
+            if len(duplicates) > 1:
+                result.append(duplicates)
+                
         return result
-                        
