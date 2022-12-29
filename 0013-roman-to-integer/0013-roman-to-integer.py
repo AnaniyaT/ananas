@@ -1,14 +1,27 @@
 class Solution:
     def romanToInt(self, s: str) -> int:
-        valdic = {"I":1, "V":5, "X":10, "L":50, "C":100, "D":500, "M":1000}
-        result = 0
-        for i, j in enumerate(s):
-            if i != len(s)-1 and j=="I" and s[i+1] in ["V","X"]:
-                result -= valdic[j]
-            elif i != len(s)-1 and j=="X" and s[i+1] in ["L","C"]:
-                result -= valdic[j]
-            elif i != len(s)-1 and j=="C" and s[i+1] in ["D","M"]:
-                result -= valdic[j]
+        _dict = {
+        'I' : 1,
+        'V' : 5,
+        'X' : 10,
+        'L' : 50,
+        'C' : 100,
+        'D' : 500,
+        'M' : 1000
+        }
+        subtract = {
+        'I' : set(['V', 'X']),
+        'X' : set(['L' , 'C']),
+        'C' : set(['D', 'M'])
+        }
+        ans = 0
+        i = 0
+        while i < (len(s)):
+            ch = s[i]
+            if ch in subtract and i < len(s) - 1 and s[i + 1] in subtract[ch]:
+                ans += (_dict[s[i + 1]] - _dict[ch])
+                i += 2
             else:
-                result += valdic[j]
-        return result
+                ans += _dict[ch]
+                i += 1
+        return ans
