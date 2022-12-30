@@ -1,0 +1,15 @@
+from collections import Counter
+
+testcases = int(input())
+for _ in range(testcases):
+    planets_cost = input().split()
+    machine2cost = int(planets_cost[1])
+    orbits = input().split()
+    orbitsCounter = Counter(orbits)
+
+    cost = 0
+
+    for orbit in orbitsCounter:
+        cost += min(orbitsCounter[orbit], machine2cost)
+    
+    print(cost)
