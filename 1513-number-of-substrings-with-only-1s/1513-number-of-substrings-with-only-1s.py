@@ -1,12 +1,12 @@
 class Solution:
     def numSub(self, s: str) -> int:
+        #Dani's Code
+        
         l = 0
         subarrays = 0
         for ind, char in enumerate(s):
-            while l < ind and s[l] == "0":
-                l += 1
-            if char == "1":
-                subarrays += ind - l + 1
-            else:
-                l = ind
+            if s[ind] == "0":
+                l = ind + 1
+            subarrays += ind - l + 1
+
         return subarrays % (10**9 + 7)
