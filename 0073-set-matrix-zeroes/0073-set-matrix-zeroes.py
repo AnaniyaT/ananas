@@ -21,6 +21,7 @@ class Solution:
         for col in colSet:
             for row in range(rows):
                 matrix[row][col] = 0
+                
         
                         
                     
