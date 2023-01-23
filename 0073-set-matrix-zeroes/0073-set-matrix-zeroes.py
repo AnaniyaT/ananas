@@ -5,23 +5,21 @@ class Solution:
         """
         rows = len(matrix)
         cols = len(matrix[0])
-        rowSet = set()
-        colSet = set()
-
+        
         for row in range(rows):
             for col in range(cols):
                 if matrix[row][col] == 0:
-                    rowSet.add(row)
-                    colSet.add(col)
-                    
-        for row in rowSet:
+                    for colInd in range(cols):
+                        if colInd != col and matrix[row][colInd] != 0:
+                            matrix[row][colInd] = "b"
+                    for rowInd in range(rows):
+                        if rowInd != row and matrix[rowInd][col] != 0:
+                            matrix[rowInd][col] = "b"
+                            
+        for row in range(rows):
             for col in range(cols):
-                matrix[row][col] = 0
-                
-        for col in colSet:
-            for row in range(rows):
-                matrix[row][col] = 0
-                
+                if matrix[row][col] == "b":
+                    matrix[row][col] = 0
         
                         
                     
