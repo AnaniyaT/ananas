@@ -1,0 +1,32 @@
+rows, cols = list(map(int, input().split()))
+table = []
+for _ in range(rows):
+    table.append(input())
+
+removed = set()
+for row in range(rows):
+    temp = {}
+    for col in range(cols):
+        char = table[row][col]
+        if char in temp:
+            removed.add(temp[char])
+            removed.add((row, col))
+        temp[char] = (row, col)
+
+for col in range(cols):
+    temp = {}
+    for row in range(rows):
+        char = table[row][col]
+        if char in temp:
+            removed.add(temp[char])
+            removed.add((row, col))
+        temp[char] = (row, col)
+
+encrypted = []
+for row in range(rows):
+    for col in range(cols):
+        char = table[row][col]
+        if (row, col) not in removed:
+            encrypted.append(char)
+
+print("".join(encrypted))
