@@ -8,16 +8,15 @@ class Solution:
         stack, arr = [], []
         curr, indx = head, 0
         while curr:
-            while stack:
-                if stack[-1][0] < curr.val:
-                    pair = stack.pop()
-                    arr[pair[1]] = curr.val
-                else: 
-                    break
+            while stack and stack[-1][0] < curr.val:
+                pair = stack.pop()
+                arr[pair[1]] = curr.val
+
             arr.append(0)
             stack.append([curr.val,indx])
             indx += 1
             curr = curr.next
+            
         return arr
                     
                     
