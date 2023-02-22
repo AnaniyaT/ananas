@@ -3,19 +3,19 @@ class Solution:
         result = []
         k = len(p)
         check = Counter(p)
-        current = defaultdict(int)
         
         for ind in range(len(s)):
             lett = s[ind]
-            current[lett] += 1
-            
+            if lett in check:
+                check[lett] -= 1
+                
             if ind >= k:
                 leftLett = s[ind-k]
-                current[leftLett] -= 1
-                if current[leftLett] <= 0:
-                    current.pop(leftLett)
+                if leftLett in check:
+                    check[leftLett] += 1
                     
-            if current == check:
+            if all(x == 0 for x in check.values()):
                 result.append(ind-k+1)
-                
+            
+
         return result
