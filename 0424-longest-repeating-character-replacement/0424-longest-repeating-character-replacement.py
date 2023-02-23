@@ -1,18 +1,19 @@
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
-        max_length = 0
-        for i in range(ord("A"), ord("Z") + 1):
-            left = 0
-            ops = k
-            target = chr(i)
-            
-            for right in range(len(s)):
-                if s[right] != target:
-                    ops -= 1
-                while ops < 0:
-                    if s[left] != target:
-                        ops += 1
-                    left += 1
-                max_length = max(max_length, right - left + 1)
+        maxLen = 0
         
-        return max_length
+        for target in range(ord('A'), ord('Z') + 1):
+            
+            l = 0
+            replaced = 0
+            for r in range(len(s)):
+                if ord(s[r]) != target:
+                    replaced += 1
+                while replaced > k:
+                    if ord(s[l]) != target:
+                        replaced -= 1
+                    l += 1
+                        
+                maxLen = max(maxLen, r-l+1)
+                
+        return maxLen
