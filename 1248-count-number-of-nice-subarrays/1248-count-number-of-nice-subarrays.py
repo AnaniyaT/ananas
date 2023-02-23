@@ -1,13 +1,16 @@
 class Solution:
     def numberOfSubarrays(self, nums: List[int], k: int) -> int:
-        dic = {0:1}
-        precount = count = 0
-        for i in nums:
-            if i%2:
-                precount += 1
-            if precount not in dic:
-                dic[precount] = 1
-            else:
-                dic[precount] += 1
-            count += dic.get(precount-k,0)
-        return count
+        count = defaultdict(int)
+        count[0] += 1
+        subarrays = 0
+        odds = 0
+        
+        for num in nums:
+            if num%2:
+                odds += 1
+            
+            subarrays += count[odds-k]
+            count[odds] += 1
+            
+        return subarrays
+            
