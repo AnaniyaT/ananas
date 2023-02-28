@@ -1,9 +1,8 @@
 class Solution:
     def isPowerOfThree(self, n: int) -> bool:
-        if n == 1:
-            return True
-        elif n == 0 or n%3:
-            return False
+        mySet = set(3**i for i in range(26))
         
-        return self.isPowerOfThree(n/3)
-            
+        if n in mySet:
+            return True
+        else:
+            return False
