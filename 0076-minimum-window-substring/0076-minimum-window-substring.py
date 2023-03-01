@@ -4,15 +4,22 @@ class Solution:
         count = Counter(t)
         current = {lett:0 for lett in t}
         ans = [-float('inf'), float('inf')]
+        satisfied = 0
         
         for r in range(len(s)):
             lett = s[r]
             if lett in current:
                 current[lett] += 1
-            while all(current[letter] >= count[letter] for letter in current):
+                if current[lett] == count[lett]:
+                    satisfied += 1
+                
+            while satisfied >= len(count):
                 leftLett = s[l]
                 if leftLett in current:
                     current[leftLett] -= 1
+                    if current[leftLett] < count[leftLett]:
+                        satisfied -= 1
+                        
                 ans = min([ans, [l, r]], key=lambda x:x[1]-x[0])
                 l += 1
                     
