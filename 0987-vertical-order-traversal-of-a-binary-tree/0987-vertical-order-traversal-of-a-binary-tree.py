@@ -22,7 +22,8 @@ class Solution:
         answer = []
         
         for col in sorted(columns):
-            answer.append(list(map(lambda x: x[1], (sorted(columns[col])))))
+            column = list(map(lambda x: x[1], (sorted(columns[col]))))
+            answer.append(column)
             
         return answer
             
