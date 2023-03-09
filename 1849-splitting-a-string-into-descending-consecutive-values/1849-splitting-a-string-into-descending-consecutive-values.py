@@ -16,6 +16,9 @@ class Solution:
         def backtrack(strg):
             nonlocal found
             
+            if found:
+                return
+            
             if not strg:
                 if check():
                     found = True
