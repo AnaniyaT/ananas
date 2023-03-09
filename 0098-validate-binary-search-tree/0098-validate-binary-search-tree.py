@@ -5,20 +5,20 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def isValidBST(self, root: Optional[TreeNode], maxx=float('inf'), minn=-float('inf')) -> bool:
-        if not root:
-            return True
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
         
-        val = root.val
+        def isValid(tree):
+            if not tree:
+                return True, float('inf'), -float('inf')
+
+            val = tree.val
+
+            left, leftMin, leftMax = isValid(tree.left)
+            right, rightMin, rightMax = isValid(tree.right)
+
+            if val <= leftMax or val >= rightMin:
+                return False, -float('inf'), float('inf')
+
+            return left and right,min(val, leftMin), max(rightMax, val)
         
-        if val >= maxx:
-            return False
-        
-        if val <= minn:
-            return False
-        
-        
-        left = self.isValidBST(root.left, val, minn)
-        right = self.isValidBST(root.right, maxx, val)
-        
-        return left and right
+        return isValid(root)[0]
