@@ -6,15 +6,12 @@ class Solution:
             nonlocal k, n
             
             if not lvl:
-                answer.append(path)
+                if len(path) == k:
+                    answer.append(path)
                 return
             
             for num in range(start + 1, n + 1 ):
                 backtrack(path + [num], num, lvl-1)
-                
-                if len(answer[-1]) != k:
-                    answer.pop()
-                
                 
         backtrack([], 0, k)
                 
