@@ -7,11 +7,11 @@ class Solution:
             if len(slices) < 2:
                 return False
             
-            for ind in range(1, len(slices)):
-                if int(slices[ind - 1]) - int(slices[ind]) != 1:
-                    return False
+            if int(slices[-2]) - int(slices[-1]) != 1:
+                return False
                 
             return True
+        
         
         def backtrack(strg):
             nonlocal found
