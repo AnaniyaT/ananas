@@ -1,50 +1,28 @@
 class Solution:
     def splitString(self, s: str) -> bool:
-        slices = []
-        found = False
+        curr = []
+        length = len(s)
         
-        def check():
-            if len(slices) < 2:
-                return False
+        def backtrack(ind):
+            nonlocal length, s
             
-            if int(slices[-2]) - int(slices[-1]) != 1:
-                return False
+            if ind >= length:
+                return len(curr) > 1
+            
+            for end in range(ind+1, length+1):
+                val = int(s[ind:end])
                 
-            return True
-        
-        
-        def backtrack(strg):
-            nonlocal found
-            
-            if found:
-                return
-            
-            if not strg:
-                if check():
-                    found = True
-                return
-            
-            n = len(strg)
-            
-            for i in range(1, n+1):
-            
-                slices.append(strg[:i])
-                
-                if len(slices) > 1:
-                    first = int(slices[-2])
-                    second = int(slices[-1])
+                if not curr or val == curr[-1] - 1:
+                    curr.append(val)
+
+                    if backtrack(end):
+                        return True
                     
-                    if first - second != 1:
-                        slices.pop()
-                        continue
-                
-                backtrack(strg[i:])
-    
-                slices.pop()
-                
-                
-        backtrack(s)
-        
-        return found
-                
-            
+                    curr.pop()
+                    
+            return False
+                    
+        return backtrack(0)  
+           
+                    
+                    
