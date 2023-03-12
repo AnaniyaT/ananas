@@ -7,7 +7,7 @@ class Solution:
             
             num = nums[mid]
             
-            if num > nums[r] and num >= nums[l]:
+            if num > nums[r]:
                 l = mid + 1
                 
             else:
