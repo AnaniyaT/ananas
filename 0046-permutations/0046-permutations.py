@@ -7,10 +7,9 @@ class Solution:
         
         def backtrack(ind):
             nonlocal length, used
-            
+           
             if not ind:
-                if len(curr) == length:
-                    perms.append(curr[:])
+                perms.append(curr[:])
                 return
             
             for i in range(length):
@@ -21,7 +20,7 @@ class Solution:
                     backtrack(ind - 1)
                     used ^= shift
                     curr.pop()
-                    backtrack(ind - 1)
+                   
                     
         backtrack(length)
         
