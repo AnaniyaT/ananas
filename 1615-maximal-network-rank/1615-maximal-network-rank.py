@@ -8,16 +8,13 @@ class Solution:
             
         maxRank = 0
         
-        sortedRank = sorted(graph, key=lambda x: len(graph[x]), reverse=True)
+        sortedRank = list(graph.keys())
         # print(graph)
         for ind in range(len(sortedRank)):
             for ind1 in range(ind + 1, len(sortedRank)):
                 rank = len(graph[sortedRank[ind]]) + len(graph[sortedRank[ind1]])
                 if sortedRank[ind] in graph[sortedRank[ind1]]:
                     rank -= 1
-                    
-                # if rank < maxRank - 1:
-                #     return maxRank
                 
                 maxRank = max(maxRank, rank)
             
