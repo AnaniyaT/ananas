@@ -14,6 +14,7 @@ class Solution:
             currPath.append(curr)
             if curr == dest:
                 paths.append(currPath[:])
+                return
             
             for edge in adjacency[curr]:
                 dfs(edge, dest)
