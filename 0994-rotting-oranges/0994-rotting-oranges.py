@@ -7,7 +7,7 @@ class Solution:
             isInbound = 0 <= r < m and 0 <= c < n
             notVisited = (r, c) not in visited
             
-            return isInbound and notVisited and grid[r][c] == 1
+            return isInbound and notVisited and grid[r][c]
         
         queue = deque()
         oranges = 0
