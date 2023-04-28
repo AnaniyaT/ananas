@@ -3,16 +3,12 @@ class Solution:
         length = len(nums)
         
         for ind in range(length):
-            if nums[ind] <= 0:
-                nums[ind] = length + 1
+            while nums[ind] != ind + 1 and not (nums[ind] > length or nums[ind] <= 0 or nums[nums[ind] -1] == nums[ind]):
+                num = nums[ind]
+                nums[ind], nums[num-1] = nums[num-1], nums[ind]
                 
         for ind in range(length):
-            num = abs(nums[ind])
-            if num <= length and nums[num-1] > 0:
-                nums[num-1] *= -1
-                
-        for ind in range(length):
-            if nums[ind] > 0:
+            if nums[ind] != ind + 1:
                 return ind + 1
             
         return length + 1
