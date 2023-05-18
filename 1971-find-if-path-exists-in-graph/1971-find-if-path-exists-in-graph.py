@@ -22,6 +22,9 @@ class UnionFind:
     def union(self, x, y):
         repX, repY = self.findRep(x), self.findRep(y)
         
+        if repY == repX:
+            return
+        
         if self.rank[repX] >= self.rank[repY]:
             repX, repY = repY, repX
             
