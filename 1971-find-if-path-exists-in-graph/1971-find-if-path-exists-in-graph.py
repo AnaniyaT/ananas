@@ -22,13 +22,11 @@ class UnionFind:
     def union(self, x, y):
         repX, repY = self.findRep(x), self.findRep(y)
         
-        if self.rank[repX] < self.rank[repY]:
-            self.rep[repX] = repY
-            self.rank[repY] += self.rank[repX]
-        else:
-            self.rep[repX] = repX
-            self.rep[repY] = repX
-            self.rank[repX] += self.rank[repY]
+        if self.rank[repX] >= self.rank[repY]:
+            repX, repY = repY, repX
+            
+        self.rep[repX] = repY
+        self.rank[repY] += self.rank[repX]
             
     def isConnected(self, x, y):
         return self.findRep(x) == self.findRep(y)
