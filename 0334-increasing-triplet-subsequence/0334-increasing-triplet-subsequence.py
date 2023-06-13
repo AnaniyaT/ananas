@@ -8,7 +8,7 @@ class Solution:
             if num > cur:
                 return True
             
-            if num > minn and num < cur:
+            if num > minn:
                 cur = num
                 
             minn = min(minn, num)
