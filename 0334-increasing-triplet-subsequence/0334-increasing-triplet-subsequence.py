@@ -1,21 +1,16 @@
 class Solution:
     def increasingTriplet(self, nums: List[int]) -> bool:
-        idk = [0 for _ in range(len(nums))]
+        inf = float('inf')
+        cur = inf
         
-        minn = float('inf')
-        for ind in range(len(nums)):
-            if nums[ind] > minn:
-                idk[ind] += 1
-            else:
-                minn = nums[ind]
-                
-        maxx = -float('inf')
-        for ind in range(len(nums)):
-            if nums[~ind] < maxx:
-                if idk[~ind]:
-                    return True
+        minn = inf
+        for num in nums:
+            if num > cur:
+                return True
             
-            else:
-                maxx = nums[~ind]
+            if num > minn and num < cur:
+                cur = num
                 
+            minn = min(minn, num)
+            
         return False
