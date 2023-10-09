@@ -27,6 +27,32 @@ class Solution:
         traverse(root)
         
         return maxWidth
+
+# bfs version
+
+# class Solution:
+#     def widthOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+#         queue = deque([(0, root)])
+#         maxWidth = 1
+        
+#         while queue:
+#             size = len(queue)
+#             leftMost = float('inf')
+#             rightMost = -float('inf')
+            
+#             for _ in range(size):
+#                 ind, node = queue.pop()
+#                 leftMost = min(leftMost, ind)
+#                 rightMost = max(rightMost, ind)
+                
+#                 if node.left:
+#                     queue.appendleft((ind * 2, node.left))
+#                 if node.right:
+#                     queue.appendleft((ind * 2 + 1, node.right))
+                    
+#             maxWidth = max(maxWidth, rightMost - leftMost + 1)
+            
+#         return maxWidth
             
             
         
