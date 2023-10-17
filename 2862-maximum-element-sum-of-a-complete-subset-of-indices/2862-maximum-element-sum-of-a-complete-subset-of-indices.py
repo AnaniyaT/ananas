@@ -16,21 +16,30 @@ class Solution:
         
         @cache
         def primeFact(num):
-            facts = []
-            isBigPrime = True
+            d = num
+            
+            if num == 1:
+                return ()
+            
+            if num <= 5000 and prime[num]:
+                return tuple([num])
+            
             for p in primes:
-                if p > num:
+                if not num % p:
+                    d = p
                     break
-                while not num % p:
-                    isBigPrime = False
-                    facts.append(p)
-                    num //= p
-                    
-            if isBigPrime:
-                return None
-                    
-            counts = Counter(facts)
-            return tuple([(p, counts.get(p, 0) % 2) for p in primes if counts.get(p, 0) % 2])
+              
+            count = 0
+            cur = num
+            while not cur % d:
+                cur //= d
+                count += 1
+                
+            if count % 2:
+                return tuple([d, *primeFact(cur)])
+            
+            return primeFact(cur)
+        
         
         p = []
         np = []
@@ -43,12 +52,12 @@ class Solution:
 
         perfects = sum(p)
         n = len(np)
-
+        
         primeFacts = defaultdict(list)
 
         for idx in np:
             pfact = primeFact(idx)
-            primeFacts[pfact].append(idx)
+            primeFacts[tuple(sorted(pfact))].append(idx)
             
         def computeSum(value):
             summ = 0
