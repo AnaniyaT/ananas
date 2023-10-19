@@ -1,8 +1,15 @@
 class Solution:
     def smallestEquivalentString(self, s1: str, s2: str, baseStr: str) -> str:
-        rep = {chr(x): chr(x) for x in range(ord("a"), ord("z") + 1)}
-        rank = {chr(x): 1 for x in range(ord("a"), ord("z") + 1)}
-        minChr = {chr(x): chr(x) for x in range(ord("a"), ord("z") + 1)}
+        n = 26
+        
+        def toNum(lett):
+            return ord(lett) - ord("a")
+        
+        def toLett(num):
+            return chr(ord("a") + num)
+        
+        rep = [i for i in range(n)]
+        rank = [[i] for i in range(n)]
 
         def findRep(x):
             cur = x
@@ -22,21 +29,29 @@ class Solution:
             if repX == repY:
                 return
 
-            if rank[repX] >= rank[repY]:
+            if len(rank[repX]) >= len(rank[repY]):
                 repX, repY = repY, repX
 
             rep[repX] = repY
-            rank[repY] += rank[repX]
-            minChr[repY] = min(minChr[repY], minChr[repX])
+            rank[repY].extend(rank[repX])
+            rank[repX] = []
 
         def isConnected(x, y):
             return findRep(x) == findRep(y)
         
         for ind in range(len(s1)):
-            union(s1[ind], s2[ind])
+            i1 = toNum(s1[ind])
+            i2 = toNum(s2[ind])
             
-        res = []
-        for ch in baseStr:
-            res.append(minChr[findRep(ch)])
+            union(i1, i2)
+        for r in rank:
+            r.sort()
             
-        return "".join(res)
+        newS = []
+        for lett in baseStr:
+            r = findRep(toNum(lett))
+            smLett = rank[r][0]
+            
+            newS.append(toLett(smLett))
+            
+        return "".join(newS)
