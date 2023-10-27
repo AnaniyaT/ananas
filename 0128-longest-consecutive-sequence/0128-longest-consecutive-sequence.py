@@ -6,7 +6,6 @@ class Solution:
         numSet = set(nums)
         dp = {}
         
-        @cache
         def getMaxLen(num):
             if num in dp:
                 return dp[num]
