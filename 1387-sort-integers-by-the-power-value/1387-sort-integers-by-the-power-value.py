@@ -1,14 +1,20 @@
 class Solution:
     def getKth(self, lo: int, hi: int, k: int) -> int:
+        dp = {1:0}
         def getScore(num):
-            if num == 1:
-                return 0
+            nonlocal dp
+            if num in dp:
+                return dp[num]
             
             mod = num % 2
+            score = 0
             if mod:
-                return getScore(num * 3 + 1) + 1
-            
-            return getScore(num // 2) + 1
+                score += getScore(num * 3 + 1) + 1
+            else:
+                score += getScore(num // 2) + 1
+                
+            dp[num] = score
+            return score
         
         nums = [num for num in range(lo, hi + 1)]
         nums.sort(key=getScore)
