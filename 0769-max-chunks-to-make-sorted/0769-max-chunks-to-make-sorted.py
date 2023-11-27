@@ -1,14 +1,10 @@
 class Solution:
     def maxChunksToSorted(self, arr: List[int]) -> int:
-        sortedd = sorted(arr)
-        
-        s1, s2 = set(), set()
-        
+        maxx = 0
         subs = 0
         for idx in range(len(arr)):
-            s1.add(sortedd[idx])
-            s2.add(arr[idx])
-            if s1 == s2:
+            maxx = max(maxx, arr[idx])
+            if maxx <= idx:
                 subs += 1
                 
         return subs
